@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ピポ語学習アプリ</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="https://cdn.glitch.global/8307599f-c625-40d2-8820-e66dab3a2e4f/pipolang.png?v=1733641576672"
+      type="image/png"
+    />
+    <meta
+      name="description"
+      content="ピポ語を学ぶためのアプリ。簡単なフレーズを練習して、ピポ語を身につけよう！"
+    />
+    <meta
+      name="keywords"
+      content="ピポ語, 学習, アプリ, ピポ語辞書, フレーズ練習"
+    />
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="ピポ語学習アプリ - ピポ語を学ぼう" />
+    <meta
+      property="og:description"
+      content="ピポ語を学ぶためのアプリ。ピポ語を簡単に覚えて、フレーズ練習や辞書機能でピポ語をマスター！"
+    />
+    <meta
+      property="og:image"
+      content="https://cdn.glitch.global/8307599f-c625-40d2-8820-e66dab3a2e4f/pipolang.png?v=1733641576672"
+    />
+    <meta property="og:url" content="https://pipolang.glitch.me" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index, follow" />
+  </head>
+  <body>
+    <header>
+      <div style="display: flex">
+        <h1>ピポ語学習アプリ</h1>
+        <img
+          style="margin-left: auto; align-items: center"
+          src="https://cdn.glitch.global/009077d5-7fd0-45ef-b929-2f08b3536d89/logo.png?v=1728624482047"
+          alt="ピポ会社のロゴ"
+          width="190px"
+          height="50px"
+          onclick="window.location.href = 'http://pipocorp.glitch.me/index.html';"
+        />
+      </div>
+      <nav>
+        <button id="learnModeBtn">ピポ語の単語を学ぶ</button>
+        <button id="dictionaryBtn">ピポ語辞典を開く</button>
+        <button id="grammarBtn">文法を学ぶ</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- 学習モードの表示エリア -->
+      <section id="learnMode" class="hidden">
+        <h2>ピポ語の単語を学習</h2>
+        <div id="practice">
+          <p>日本語のフレーズ:</p>
+          <p id="jpPhrase">こんにちは</p>
+          <p>ピポ語のフレーズ:</p>
+          <input type="text" id="pipoInput" placeholder="ピポ語を入力..." />
+          <button id="checkAnswerBtn">チェック</button>
+          <p id="feedback"></p>
+          <progress id="progressMeter" value="0" min="0" max="10"></progress>
+          <p id="questionCount">
+            残り問題数: <span id="remainingQuestions">10</span>問
+          </p>
+        </div>
+      </section>
+
+      <!-- ピポ語辞書の表示エリア -->
+      <section id="dictionary" class="hidden">
+        <h2>ピポ語辞典</h2>
+        <input type="text" id="searchInput" placeholder="検索: 日本語を入力" />
+        <button id="searchBtn">検索</button>
+        <p id="searchResult"></p>
+      </section>
+
+      <!-- ピポ語文法の表示エリア -->
+      <section id="grammar" class="hidden">
+        <h2>ピポ語の文法</h2>
+        <h3>基本構造</h3>
+        <p>
+          ピポ語は簡潔で分かりやすい文法を持ち、英語に似た構造を採用しています。主に「.（ピリオド）」と「,（カンマ）」を使用して意味を明確に区切ります。
+        </p>
+
+        <h3>文の基本形</h3>
+        <p>文の基本形は以下のようになります:</p>
+        <pre>[主語] + [動詞] + [目的語] + [補足情報].</pre>
+        <p>
+          文の終わりには「.（ピリオド）」を付けます。補足情報がある場合はカンマで区切ります。
+        </p>
+
+        <h3>挨拶の位置</h3>
+        <p>文頭の挨拶: 挨拶の後にカンマを付けて文と区切ります。</p>
+        <p>文末の挨拶: 文全体とカンマで区切ります。</p>
+
+        <h3>例文集</h3>
+        <p>基本文型の例:</p>
+        <pre>👤💭 🍔🥤 📅🌞.</pre>
+        <p>「私は明日ピポフードを食べます。」</p>
+
+        <p>挨拶を含む例:</p>
+        <p>文頭挨拶:</p>
+        <pre>🙋🌅, 👤💭 🍔🥤.</pre>
+        <p>「こんにちは、私はピポフードを食べます。」</p>
+
+        <p>文末挨拶:</p>
+        <pre>👤💭 🍔🥤, 🙋🌅.</pre>
+        <p>「私はピポフードを食べます、こんにちは。」</p>
+
+        <h3>特別ルール</h3>
+        <p>挨拶が短い場合は、「.」を省略しても良い。</p>
+        <pre>🙋🌅 👤💭 🍔🥤. → 自然な会話として許容。</pre>
+        <p>
+          カンマやピリオドを省略すると、意味が曖昧になるため基本的には使用することを推奨します。
+        </p>
+      </section>
+
+      <!-- 結果ページ -->
+      <section id="resultPage" class="hidden">
+        <h2>学習結果</h2>
+        <p id="correctAnswers"></p>
+        <button type="button" id="retry">もう一度学ぶ</button>
+        <hr />
+      </section>
+    </main>
+
+    <footer>
+      <p>copyright&copy;pipo corporation 2024 all rights reserved.</p>
+    </footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
